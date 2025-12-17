@@ -21,13 +21,18 @@ public class loginsteps {
         login.login(u, p);
     }
 
-    @Then("debe ver la página de productos")
-//public void debe ver la página de productos() {
-public void debe_ver_la_página_de_productos() throws InterruptedException {
-    String actualUrl = driver.getCurrentUrl();
-    
-    // Cierre navegador
-    Thread.sleep(2000);
-    driver.quit();
+
+    @Then("debe ver la pagina de productos")
+    //public void debe_ver_la_pagina_de_productos() {
+    public void debe_ver_la_pagina_de_productos() throws InterruptedException {
+        // Validación de URL
+        String actualUrl = driver.getCurrentUrl();
+        if(actualUrl.contains("inventory.html")) {
+            System.out.println("TEST PASSED: El usuario está en la página de productos.");
+        } else {
+            org.junit.Assert.fail("TEST FAILED: No se redirigió a la página de productos.");
+        }
+        Thread.sleep(2000);
+        driver.quit();
     }
 }
